@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
-import { Buttons } from '../../components/Buttons/Buttons';
+import { Buttons } from '../../components/Buttons';
 
 export const Post = () => {
   return (
@@ -32,16 +32,24 @@ export const Post = () => {
   );
 };
 
-const PostLayout = styled.div`
+const PostLayout = styled.form`
   padding-top: 6rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+`;
+
+const PostContent = styled.div`
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 4rem;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
 `;
 
 const InputBox = styled.input`
@@ -82,7 +90,7 @@ const SelectButton = styled.button`
   width: 12rem;
   padding: 0.7rem 1.6rem;
   color: ${COLORS.gray900};
-  text-align: cetner;
+  text-align: center;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.6rem;
