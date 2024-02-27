@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import FONTS from '../../utils/Fonts';
 import COLORS from '../../utils/colors';
 
+const BUTTON_SIZE = {
+  large: 72,
+  medium: 32,
+  small: 28,
+};
+
 export const Primary56 = styled.button`
   ${FONTS.font18_Bold}
   color: ${COLORS.white};
@@ -9,6 +15,7 @@ export const Primary56 = styled.button`
   padding: 1.4rem 2.4rem;
   border-radius: 1.2rem;
   background-color: ${COLORS.purple600};
+  width: ${({ buttonSize }) => BUTTON_SIZE[buttonSize] ?? BUTTON_SIZE['small']}rem;
 
   &:disabled {
     background-color: ${COLORS.gray300};

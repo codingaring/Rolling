@@ -5,7 +5,7 @@ import Edit from './pages/Edit';
 import Paper from './pages/Paper';
 import Message from './pages/Message';
 import NavLayout from './layout/NavLayout';
-import { Post } from './pages/PostPage';
+import { Post } from './pages/Post';
 
 const App = () => {
   return (

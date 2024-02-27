@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ColorBoxBtn } from './component/ColorBox';
 import COLORS from '../../utils/colors';
 import FONTS from '../../utils/Fonts';
+import { Buttons } from '../../components/Buttons/Buttons';
 
 export const Post = () => {
   return (
@@ -24,7 +25,9 @@ export const Post = () => {
         <ColorBoxBtn type="button" bgcolor="blue" />
         <ColorBoxBtn type="button" bgcolor="green" />
       </ColorBoxContainer>
-      <button>생성하기</button>
+      <Buttons buttonType="Primary56" buttonSize="large">
+        생성하기
+      </Buttons>
     </PostLayout>
   );
 };

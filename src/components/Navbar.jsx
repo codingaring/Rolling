@@ -19,7 +19,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Buttons buttonType="Outlined40">롤링 페이퍼 만들기</Buttons>
+              <Buttons buttonType="Outlined40" buttonSize="small">
+                롤링 페이퍼 만들기
+              </Buttons>
             </li>
           </Ul>
         </Container>
