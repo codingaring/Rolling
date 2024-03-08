@@ -5,13 +5,14 @@ const OPTIONS = [
   { value: 'Pretendard', name: 'Pretendard' },
 ];
 
-export const FontSelect = ({ setMessageData }) => {
-  const handleChange = (selectedOption) => {
-    setMessageData((prevData) => ({
-      ...prevData,
-      font: selectedOption,
-    }));
+export const FontSelect = ({ onChange }) => {
+  const handleFontChange = (selectedOption) => {
+    onChange('font', selectedOption);
   };
+
+  // const handleFontChange = (selectedOption) => {
+  //   onChange({ type: 'SET_FIELD', field: 'font', value: selectedOption.value });
+  // };
 
   return (
     <>
@@ -20,7 +21,7 @@ export const FontSelect = ({ setMessageData }) => {
         defaultValue="Noto Sans"
         options={OPTIONS}
         width="72rem"
-        onChange={handleChange}
+        onChange={handleFontChange}
       />
     </>
   );

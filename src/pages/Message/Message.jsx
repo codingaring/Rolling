@@ -10,7 +10,7 @@ import FontSelect from './components/FontSelect';
 import Buttons from '../../components/Buttons';
 import * as S from './MessageStyled';
 
-const PostMessagesData = {
+const initialState = {
   sender: '', // 보낸이 이름
   profileImageURL:
     'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png', // 프로필 이미지 URL
@@ -19,8 +19,20 @@ const PostMessagesData = {
   font: 'Noto Sans', // 기본 폰트
 };
 
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case 'SET_FIELD':
+//       return {...state, [action.field]: action.value};
+//     case 'RESET':
+//       return initialState;
+//     default:
+//       return state;
+//   }
+// }
+
 const Message = () => {
-  const [messageData, setMessageData] = useState(PostMessagesData);
+  const [messageData, setMessageData] = useState(initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
   const [isInputError, setIsInputError] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -46,19 +58,16 @@ const Message = () => {
     }
   };
 
-  const handleChange = (value) => {
+  const handleChange = (key, value) => {
     setMessageData((prevData) => ({
       ...prevData,
-      sender: value,
+      [key]: value,
     }));
   };
 
-  const handleProfileChange = (value) => {
-    setMessageData((prevData) => ({
-      ...prevData,
-      profileImageURL: value,
-    }));
-  };
+  // const handleChange = (field, value) => {
+  //   dispatchEvent({type: 'SET_FIELD', field, value});
+  // }
 
   return (
     <Layout>
@@ -70,7 +79,7 @@ const Message = () => {
 
         <div>
           <S.Title>프로필 이미지</S.Title>
-          <ProfileImageSelect onChange={handleProfileChange} selectedImgUrl={messageData.profileImageURL} />
+          <ProfileImageSelect onChange={handleChange} selectedImgUrl={messageData.profileImageURL} />
         </div>
 
         <div>
@@ -80,7 +89,7 @@ const Message = () => {
 
         <S.EnterContentWrapper>
           <S.Title>내용을 입력해주세요</S.Title>
-          <EnterContent setMessageData={setMessageData} />
+          <EnterContent onChange={handleChange} setMessageData={setMessageData} />
         </S.EnterContentWrapper>
 
         <div>

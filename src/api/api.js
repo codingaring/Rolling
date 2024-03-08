@@ -73,6 +73,17 @@ export const createReaction = async ({ id, body }) => {
   return data;
 };
 
+export const getPopularRecipientList = async () => {
+  const res = await fetch(`${BASE_URL}recipients/?sort=like`);
+
+  if (!res.ok) {
+    throw new Error('PopularRecipientList를 불러오는데 실패하였습니다.');
+  }
+
+  const data = await res.json();
+  return data;
+};
+
 export const getRecipientList = async () => {
   const res = await fetch(`${BASE_URL}recipients/`);
 

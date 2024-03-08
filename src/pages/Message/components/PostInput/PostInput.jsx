@@ -6,10 +6,11 @@ const PostInput = ({ onChange, isInputError, setIsInputError }) => {
   const [name, setName] = useState('');
   const [touched, setTouched] = useState(false);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const value = e.target.value;
     setName(value);
-    onChange(value);
+    onChange('sender', value);
+    // onChange({ type: 'SET_FIELD', field: 'sender', value: value });
     setIsInputError(!value.trim()); // 공백만 있는 경우도 에러로 처리
     if (!touched) setTouched(true); // 사용자가 입력을 시작하면 touched를 true로 설정
   };
@@ -25,7 +26,7 @@ const PostInput = ({ onChange, isInputError, setIsInputError }) => {
         textFieldType="Input"
         placeholder="이름을 입력해 주세요."
         width="72rem"
-        onChange={handleChange}
+        onChange={handleInputChange}
         onBlur={handleBlur}
         value={name}
         $isError={isInputError && touched}

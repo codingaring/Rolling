@@ -16,8 +16,12 @@ const profile_images = [
 
 const ProfileImageSelect = ({ onChange, selectedImgUrl }) => {
   const handleProfileImgClick = (imageUrl) => {
-    onChange(imageUrl);
+    onChange('profileImageURL', imageUrl);
   };
+
+  // const handleProfileImgClick = (imageUrl) => {
+  //   onChange({ type: 'SET_FIELD', field: 'profileImageURL', value: imageUrl });
+  // };
 
   return (
     <S.Container>

@@ -7,13 +7,14 @@ const OPTIONS = [
   { value: '친구', name: '친구' },
 ];
 
-const RelationshipSelect = ({ setMessageData }) => {
-  const handleChange = (selectedOption) => {
-    setMessageData((prevData) => ({
-      ...prevData,
-      relationship: selectedOption,
-    }));
+const RelationshipSelect = ({ onChange }) => {
+  const handleRelationshipChange = (selectedOption) => {
+    onChange('relationship', selectedOption);
   };
+
+  // const handleRelationshipChange = (selectedOption) => {
+  //   onChange({ type: 'SET_FIELD', field: 'relationship', value: selectedOption.value });
+  // };
 
   return (
     <>
@@ -23,7 +24,7 @@ const RelationshipSelect = ({ setMessageData }) => {
         options={OPTIONS}
         width="72rem"
         name="relationship"
-        onChange={handleChange}
+        onChange={handleRelationshipChange}
       />
     </>
   );

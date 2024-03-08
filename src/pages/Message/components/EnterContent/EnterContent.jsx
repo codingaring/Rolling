@@ -1,15 +1,17 @@
 import TextFields from '../../../../components/TextField/TextFields';
 
-const EnterContent = ({ setMessageData }) => {
-  const handleChange = (content) => {
-    setMessageData((prevData) => ({
-      ...prevData,
-      content: content,
-    }));
+const EnterContent = ({ onChange }) => {
+  const handleEnterContentChange = (content) => {
+    onChange('content', content);
   };
+
+  // const handleEnterContentChange = (content) => {
+  //   onChange({ type: 'SET_FIELD', field: 'content', value: content });
+  // };
+
   return (
     <>
-      <TextFields textFieldType="TextEditor" onChange={handleChange} />
+      <TextFields textFieldType="TextEditor" onChange={handleEnterContentChange} />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getRecipientList } from '../../api/api';
+import { getPopularRecipientList, getRecipientList } from '../../api/api';
 import Layout from '../../layout/Layout';
 import CardList from './components/CardList';
 import Card from './components/Card';
@@ -24,10 +24,13 @@ const List = () => {
 
   const handleLoadRecipientList = async (options) => {
     try {
-      const data = await getRecipientList(options);
-      setRecipientList(data.results);
-      setPopularRecipientList([...data.results]);
-      const w = data.results.length - 1;
+      const PopularData = await getPopularRecipientList(options);
+      const recentData = await getRecipientList(options);
+
+      setPopularRecipientList(PopularData.results);
+      setRecipientList(recentData.results);
+
+      const w = PopularData.results.length - 1;
       recipientListWidth.current = -(w * 275 + w * 20) + 1160;
     } catch (error) {
       console.error(error);
@@ -106,22 +109,18 @@ const List = () => {
               onMouseMove={(e) => handleMouseMoveEvent(e, topContainerRef)}
             >
               <CardList slideX={topSlideX}>
-                {popularRecipientList
-                  // reactionCount를 기준으로 내림차순 정렬
-                  .sort((a, b) => b.reactionCount - a.reactionCount)
-                  // 정렬된 결과를 매핑하여 각각의 카드를 생성
-                  .map((card) => (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      title={card.name}
-                      backgroundColor={card.backgroundColor}
-                      backgroundImageURL={card.backgroundImageURL}
-                      messageCount={card.messageCount}
-                      messages={card.recentMessages}
-                      topReactions={card.topReactions}
-                    />
-                  ))}
+                {popularRecipientList.map((card) => (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    title={card.name}
+                    backgroundColor={card.backgroundColor}
+                    backgroundImageURL={card.backgroundImageURL}
+                    messageCount={card.messageCount}
+                    messages={card.recentMessages}
+                    topReactions={card.topReactions}
+                  />
+                ))}
               </CardList>
             </S.CardListContainer>
           </S.Wrapper>
